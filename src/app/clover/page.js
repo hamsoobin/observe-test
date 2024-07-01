@@ -2,9 +2,11 @@ import Link from "next/link";
 
 export default function Clover() {
     const clover3 = "./assets/images/triple.png"
-    const clover4 = "";
+    const clover4 = "./assets/images/lucky.png"
 
     const loopMax = 91
+
+    const lucky = Math.floor(Math.random() * 90)
 
     return (
         <div className="fn-app">
@@ -18,11 +20,14 @@ export default function Clover() {
                     <p className="fn-lv-title">네잎 클로버 찾기</p>
                 </div>
                 <div className="fn-clover-section">
-                    {Array(loopMax).fill(0).map((_, i) => (
-                        <img key={i} src={clover3} className="fn-clover-img"/>
-                    ))
-                    }
-
+                    {Array(loopMax).fill(0).map((_, i) => {
+                        return (i === lucky)
+                            ?
+                            <Link href="/find-i">
+                                <img key={i} src={clover4} className="fn-clover-img"/>
+                            </Link>
+                            : <img key={i} src={clover3} className="fn-clover-img"/>
+                    })}
                 </div>
             </div>
         </div>
